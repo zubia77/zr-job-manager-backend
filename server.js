@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 
 dotenv.config();
 
-const MONGODB_URI = 'mongodb://localhost/zr-job-manager';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/zr-job-manager';
 
 mongoose.connect(MONGODB_URI, (err) => {
     if (err) {
