@@ -4,6 +4,13 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors'
 
+const user = {
+    id: 1,
+    username: 'hans',
+    firstName: 'Hans',
+    lastName: 'Richter'
+};
+
 dotenv.config();
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/zr-job-manager';
@@ -19,10 +26,24 @@ mongoose.connect(MONGODB_URI, (err) => {
  
 const app = express();
 app.use(cors())
+app.use(express.json());
 const port = process.env.PORT || 3046;
  
 app.get('/', (req, res) => {
     res.send('<h1>ZR Job Manager API</h1>');
+});
+
+app.post('/login', (req, res) => {
+   
+    const username = req.body.username;
+    const password = req.body.password;
+    if (username === 'hans' && password === '123') {
+        res.json({
+            user
+        });
+    } else {
+        res.sendStatus(403);
+    }
 });
 
 app.get('/job-sources', async(req, res) => {
