@@ -1,5 +1,6 @@
 import express from 'express';
 import { JobSource } from './models/JobSource.js';
+import { User } from './models/User.js'
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors'
@@ -67,20 +68,25 @@ app.post('/maintain-login', verifyToken, (req, res) => {
     });
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', async (req, res) => {
    
     const username = req.body.username;
     const password = req.body.password;
-    if (username === 'hans' && password === '123') {
-        jwt.sign({ user }, 'secretkey', { expiresIn: '20s' }, (err, token) => {
-            res.json({
-                user,
-                token
-            });
-        });
+    const user = await User.findOne({username: username, password: password});if (user === null) {
+        res.status(403).send('user not found');
     } else {
-        res.sendStatus(403);
+        res.send('FOUND USER')
     }
+    // if (username === 'hans' && password === '123') {
+    //     jwt.sign({ user }, 'secretkey', { expiresIn: '20s' }, (err, token) => {
+    //         res.json({
+    //             user,
+    //             token
+    //         });
+    //     });
+    // } else {
+    //     res.sendStatus(403);
+    // }
 });
 
 app.get('/job-sources', async(req, res) => {
