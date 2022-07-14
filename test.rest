@@ -8,8 +8,8 @@ POST {{url}}/login
 content-type: application/json
  
 {
-    "username": "zubia",
-    "password": "zubia123"
+    "username": "richter",
+    "password": "richter123"
 }
 
 ### MAINTAIN LOGIN
