@@ -82,7 +82,7 @@ app.post('/login', async (req, res) => {
                 username: user.username,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                acessGroups: user.accessGroups
+                accessGroups: user.accessGroups
             }
             jwt.sign(
                 { user: frontendUser },
