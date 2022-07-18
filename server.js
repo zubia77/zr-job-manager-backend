@@ -7,12 +7,12 @@ import cors from 'cors'
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
-const user = {
-    id: 1,
-    username: 'hans',
-    firstName: 'Hans',
-    lastName: 'Richter'
-};
+// const user = {
+//     id: 1,
+//     username: 'hans',
+//     firstName: 'Hans',
+//     lastName: 'Richter'
+// };
 
 dotenv.config();
 
